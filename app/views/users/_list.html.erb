@@ -1,0 +1,46 @@
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-3">
+			<% if flash[:create] %>
+		      <p class="success"><%= flash[:create] %></p>
+		    <% end %>
+		    <% if flash[:update] %>
+              <p class="success"><%= flash[:update] %></p>
+            <% end %>
+            <p id="notice">
+              <%= notice %>
+            </p>
+
+			<div class="profile">
+				<h1>User info</h1>
+				<%= attachment_image_tag user, :profile_image, style: "width: 100px; height: 100px;", fallback: "no_image.png" %>
+				<table class="table table-striped">
+					<tr>
+			            <td>name</td>
+			            <td><%= user.name %></td>
+			        </tr>
+			        <tr>
+			            <td>introduction</td>
+			            <td><%= user.introduction %></td>
+			        </tr>
+			    </table>
+	            	<p><%= link_to '', edit_user_path(user),class: "glyphicon glyphicon-wrench col-xs-12 btn btn-default " %></p>
+	        </div>
+
+	        <div class="new">
+				<h1>New book</h1>
+			    <%= form_for (book) do |f| %>
+
+			        <p class="new-title">Title</p>
+			        <%= f.text_field :title, class:"col-lg-12" %>
+			        <p class="new-body">Body</p>
+			        <%= f.text_area :body, class:"col-lg-12" %>
+
+			        <p class="create"><%= f.submit 'Create Book', class:"btn btn-primary col-xs-12" %></p>
+
+
+			    <% end %>
+			</div>
+
+	    </div>

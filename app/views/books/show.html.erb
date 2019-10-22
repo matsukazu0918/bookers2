@@ -1,0 +1,35 @@
+<%= render 'users/list', user: @users, book: @books %>
+
+
+<div class="col-lg-9">
+	<h1>Book detail</h1>
+	<table class="table table-striped">
+		 <tr>
+			<th colspan="image"></th>
+			<th class=title></th>
+			<th class=bpdy></th>
+			<th colspan="1"></th>
+			<th colspan="1"></th>
+		</tr>
+		<tr>
+			<td class="image"><%= attachment_image_tag @book.user, :profile_image, style: "width: 50px; height: 50px;", fallback: "no_image.png" %><br>
+				<%= link_to user_path(@users) do %>
+				  <%= @book.user.name %>
+                <% end %>
+			</td>
+			<td class=title><%= @book.title %></td>
+			<td class=body><%= @book.body %></td>
+			<td>
+				<% if @book.user == current_user %>
+				<%= link_to "Edit", edit_book_path(@book), class:"btn-sm btn-success" %>
+				<% end %>
+			</td>
+			<td>
+				<% if @book.user == current_user %>
+				<%= link_to "Destroy", book_path(@book), class:"btn-sm btn-danger destroy", method: :delete %>
+				<% end %>
+			</td>
+		</tr>
+
+	</table>
+</div>
